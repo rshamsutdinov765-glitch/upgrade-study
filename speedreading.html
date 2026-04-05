@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Скорочтение — UpGrade Study Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+body {margin:0;font-family:'Montserrat',sans-serif;background:#0a0a0f;color:white;}
+header {text-align:center;padding:60px 20px;background:radial-gradient(circle,#1a1a2e,#000);}
+header img {width:220px;filter:drop-shadow(0 0 20px #ff3d77);}
+h1 {font-size:36px;margin:20px 0;background:linear-gradient(45deg,#ff6a00,#ff3d77);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+section {max-width:900px;margin:auto;padding:50px 20px;}
+a {color:#ff6a00;text-decoration:none;font-weight:700;}
+a:hover{text-decoration:underline;}
+ul {list-style:none;padding-left:0;}
+ul li{margin-bottom:15px;padding-left:25px;position:relative;}
+ul li::before {content:"✔";position:absolute;left:0;color:#ff3d77;font-weight:900;}
+.form-box {background:rgba(255,255,255,0.07);padding:30px;border-radius:20px;max-width:450px;margin:auto;}
+input{width:100%;padding:14px;margin:12px 0;border-radius:12px;border:none;font-size:16px;font-weight:600;}
+button{width:100%;padding:16px;background:linear-gradient(45deg,#ff6a00,#ff3d77);color:white;border:none;border-radius:14px;font-weight:700;font-size:18px;cursor:pointer;transition:0.3s;}
+button:hover{background:linear-gradient(45deg,#ff3d77,#ff6a00);}
+</style>
+</head>
+<body>
+<header>
+<img src="logo.png" alt="Logo">
+<h1>Скорочтение</h1>
+<p>Развитие скорости чтения и концентрации</p>
+<a href="index.html">⬅ Вернуться на главную</a>
+</header>
+
+<section>
+<h2>Что изучаем</h2>
+<ul>
+<li>Скорость чтения</li>
+<li>Понимание текста</li>
+<li>Концентрация и память</li>
+<li>Техника запоминания информации</li>
+</ul>
+
+<h2>Форма записи</h2>
+<div class="form-box">
+<input id="name" placeholder="Имя">
+<input id="phone" placeholder="Телефон">
+<button onclick="send()">Записаться на Скорочтение</button>
+</div>
+</section>
+
+<script>
+function send(){
+const n=document.getElementById('name').value.trim();
+const p=document.getElementById('phone').value.trim();
+if(!n||!p){alert('Заполните все поля!');return;}
+const msg=`🔥 ЗАЯВКА НА СКОРОЧТЕНИЕ%0AИмя:${encodeURIComponent(n)}%0AТел:${encodeURIComponent(p)}`;
+window.open(`https://wa.me/77474549856?text=${msg}`,'_blank');
+}
+</script>
+</body>
+</html>

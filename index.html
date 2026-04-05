@@ -1,187 +1,103 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>UpGrade Study Club</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet" />
 <style>
-body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  background: #0a0a0f;
-  color: white;
-}
-
-/* HEADER */
-header {
-  text-align: center;
-  padding: 100px 20px;
-  background: radial-gradient(circle, #1a1a2e, #000);
-}
-
-header img {
-  width: 140px;
-  filter: drop-shadow(0 0 20px #ff3d77);
-}
-
-h1 {
-  font-size: 42px;
-  background: linear-gradient(45deg, #ff6a00, #ff3d77);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* BUTTON */
-.btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 16px 35px;
-  background: linear-gradient(45deg, #ff6a00, #ff3d77);
-  border-radius: 12px;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
-
-/* SECTION */
-section {
-  max-width: 1100px;
-  margin: auto;
-  padding: 70px 20px;
-}
-
-/* CARDS */
-.courses {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 25px;
-}
-
-.card {
-  background: rgba(255,255,255,0.05);
-  padding: 25px;
-  border-radius: 20px;
-}
-
-/* SALE BLOCK */
-.sale {
-  background: linear-gradient(45deg, #ff6a00, #ff3d77);
-  padding: 30px;
-  border-radius: 20px;
-  text-align: center;
-}
-
-/* FORM */
-.form-box {
-  background: rgba(255,255,255,0.05);
-  padding: 30px;
-  border-radius: 20px;
-}
-
-input, select {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: none;
-}
-
-button {
-  width: 100%;
-  padding: 15px;
-  background: linear-gradient(45deg, #ff6a00, #ff3d77);
-  color: white;
-  border: none;
-  border-radius: 12px;
-}
-
-/* WHATSAPP */
-.whatsapp {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  padding: 18px;
-  border-radius: 50%;
-  text-decoration: none;
-}
+body {margin:0;font-family:'Montserrat',sans-serif;background:#0a0a0f;color:white;}
+header {text-align:center;padding:100px 20px 60px;background:radial-gradient(circle,#1a1a2e,#000);}
+header img {width:220px;filter:drop-shadow(0 0 20px #ff3d77);animation:float 3s infinite ease-in-out;}
+@keyframes float {0%{transform:translateY(0);}50%{transform:translateY(-15px);}100%{transform:translateY(0);}}
+h1 {font-size:42px;margin:20px 0 10px;background:linear-gradient(45deg,#ff6a00,#ff3d77);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+p.subtitle {font-size:18px;margin:0 0 25px;color:#ff6a00cc;font-weight:600;}
+.btn {display:inline-block;margin-top:20px;padding:16px 45px;background:linear-gradient(45deg,#ff6a00,#ff3d77);border-radius:12px;text-decoration:none;color:white;font-weight:700;font-size:18px;box-shadow:0 0 15px #ff3d77cc;transition:transform 0.3s,box-shadow 0.3s;}
+.btn:hover {transform:scale(1.1);box-shadow:0 0 30px #ff3d77ff;}
+section {max-width:1100px;margin:auto;padding:70px 20px;}
+h2 {font-weight:700;font-size:32px;margin-bottom:30px;color:#ff3d77;text-align:center;}
+.sale {background:linear-gradient(45deg,#ff6a00,#ff3d77);padding:35px 25px;border-radius:20px;text-align:center;box-shadow:0 0 40px #ff3d77cc;font-weight:700;font-size:24px;}
+.sale p {margin:8px 0;font-size:18px;}
+.courses {display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px;}
+.card {background:rgba(255,255,255,0.05);padding:30px;border-radius:20px;font-weight:600;font-size:22px;text-align:center;box-shadow:0 0 10px #ff6a00aa;transition:transform 0.3s,box-shadow 0.3s;}
+.card:hover {transform:translateY(-12px) scale(1.05);box-shadow:0 0 25px #ff3d77dd;}
+.card a {color:white;text-decoration:none;display:block;height:100%;}
+.card a:hover {text-decoration:underline;}
+ul {max-width:600px;margin:0 auto;padding-left:20px;list-style:none;}
+ul li {position:relative;padding-left:30px;font-size:20px;margin-bottom:20px;}
+ul li::before {content:"✔";position:absolute;left:0;color:#ff3d77;font-weight:900;font-size:22px;}
+.whatsapp {position:fixed;bottom:25px;right:25px;background:#25d366;padding:20px;border-radius:50%;box-shadow:0 0 20px #25d366cc;text-decoration:none;color:white;font-size:28px;animation:pulse 2.5s infinite;z-index:1000;}
+@keyframes pulse {0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7);}70%{box-shadow:0 0 0 15px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
 </style>
 </head>
-
 <body>
 
 <header>
-  <img src="logo.png">
-  <h1>UpGrade Study Club</h1>
-  <p>📚 Улучшим оценки вашего ребёнка уже за 1 месяц</p>
-  <a href="#form" class="btn">Записаться сейчас</a>
+<img src="logo.png" alt="UpGrade Study Club logo" />
+<h1>UpGrade Study Club</h1>
+<p class="subtitle">📚 Улучшим оценки вашего ребёнка уже за 1 месяц</p>
+<a href="#form" class="btn">Записаться сейчас</a>
 </header>
 
 <section>
-  <div class="sale">
-    <h2>🎁 Бесплатный пробный урок</h2>
-    <p>Только для новых учеников</p>
-    <p><b>Осталось 5 мест</b></p>
-  </div>
+<div class="sale">
+🎁 Бесплатный пробный урок <br>
+Только для новых учеников<br>
+<b>Осталось 5 мест!</b>
+</div>
 </section>
 
 <section>
-  <h2>Наши направления</h2>
-  <div class="courses">
-    <div class="card">📘 Математика</div>
-    <div class="card">📖 Скорочтение</div>
-    <div class="card">🇬🇧 Английский</div>
-    <div class="card">🧒 Продлёнка</div>
-  </div>
+<h2>Наши направления</h2>
+<div class="courses">
+<div class="card"><a href="math.html">📘 Математика</a></div>
+<div class="card"><a href="speedreading.html">📖 Скорочтение</a></div>
+<div class="card"><a href="english.html">🇬🇧 Английский</a></div>
+<div class="card"><a href="aftercare.html">🧒 Продлёнка</a></div>
+</div>
 </section>
 
 <section>
-  <h2>Почему выбирают нас</h2>
-  <ul>
-    <li>✔ Маленькие группы</li>
-    <li>✔ Индивидуальный подход</li>
-    <li>✔ Результат уже через 1 месяц</li>
-    <li>✔ Контроль домашних заданий</li>
-  </ul>
+<h2>Почему выбирают нас</h2>
+<ul>
+<li>Маленькие группы</li>
+<li>Индивидуальный подход</li>
+<li>Результат уже через 1 месяц</li>
+<li>Контроль домашних заданий</li>
+</ul>
 </section>
 
 <section id="form">
-  <div class="form-box">
-    <h2>Записаться сейчас</h2>
-
-    <input id="name" placeholder="Имя">
-    <input id="phone" placeholder="Телефон">
-
-    <select id="course">
-      <option>Математика</option>
-      <option>Скорочтение</option>
-      <option>Английский</option>
-      <option>Продлёнка</option>
-    </select>
-
-    <button onclick="send()">Получить бесплатный урок</button>
-  </div>
+<div class="form-box">
+<h2>Записаться сейчас</h2>
+<input id="name" placeholder="Имя">
+<input id="phone" placeholder="Телефон">
+<select id="course">
+<option>Математика</option>
+<option>Скорочтение</option>
+<option>Английский</option>
+<option>Продлёнка</option>
+</select>
+<button onclick="send()">Получить бесплатный урок</button>
+</div>
 </section>
 
 <section>
-  <h2>Контакты</h2>
-  <p>📍 Алматы, Айгерим, Молдагулова 19</p>
-  <p>📞 87474549856</p>
+<h2>Контакты</h2>
+<p>📍 Алматы, Айгерим, Молдагулова 19</p>
+<p>📞 87474549856</p>
 </section>
 
-<a href="https://wa.me/77474549856" class="whatsapp">💬</a>
+<a href="https://wa.me/77474549856" class="whatsapp" target="_blank">💬</a>
 
 <script>
 function send(){
-  let n = document.getElementById('name').value;
-  let p = document.getElementById('phone').value;
-  let c = document.getElementById('course').value;
-
-  let msg = `🔥 НОВАЯ ЗАЯВКА%0AИмя:${n}%0AТел:${p}%0AКурс:${c}`;
-  window.open(`https://wa.me/77474549856?text=${msg}`);
+const n=document.getElementById('name').value.trim();
+const p=document.getElementById('phone').value.trim();
+const c=document.getElementById('course').value;
+if(!n||!p){alert('Пожалуйста, заполните имя и телефон!');return;}
+const msg=`🔥 НОВАЯ ЗАЯВКА%0AИмя:${encodeURIComponent(n)}%0AТел:${encodeURIComponent(p)}%0AКурс:${encodeURIComponent(c)}`;
+window.open(`https://wa.me/77474549856?text=${msg}`,'_blank');
 }
 </script>
 
