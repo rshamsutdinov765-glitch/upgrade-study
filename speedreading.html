@@ -11,7 +11,7 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-  font-family:'Montserrat',sans-serif;
+  font-family:'Montserrat',-apple-system,BlinkMacSystemFont,sans-serif;
   background:#0a0a0f;
   color:white;
 }
@@ -20,15 +20,19 @@ body{
 body::before{
   content:"";
   position:fixed;
-  width:100%;height:100%;
+  width:100%;
+  height:100%;
   background:
     radial-gradient(circle at 20% 30%, #ff6a00, transparent 30%),
     radial-gradient(circle at 80% 70%, #ff3d77, transparent 30%);
+  background-size:200% 200%;
   animation:bgMove 20s infinite linear;
   z-index:-1;
 }
 @keyframes bgMove{
+  0%{background-position:0% 50%,100% 50%;}
   50%{background-position:100% 50%,0% 50%;}
+  100%{background-position:0% 50%,100% 50%;}
 }
 
 /* NAVBAR */
@@ -91,6 +95,7 @@ header{
 
 header img{
   width:180px;
+  height:auto;
   animation:float 3s infinite;
 }
 
@@ -104,6 +109,11 @@ h1{
   background:linear-gradient(45deg,#ff6a00,#ff3d77);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  text-shadow:0 2px 10px rgba(0,0,0,0.7);
+}
+
+h1, h2, p{
+  text-shadow:0 2px 10px rgba(0,0,0,0.7);
 }
 
 .back{
@@ -124,7 +134,7 @@ section{
   padding:60px 20px;
   opacity:0;
   transform:translateY(40px);
-  transition:1s;
+  transition:0.6s;
 }
 section.show{
   opacity:1;
@@ -164,11 +174,16 @@ input,button{
   margin-top:10px;
   border:none;
   border-radius:10px;
+  font-family:inherit;
 }
 
 input{
   background:#1a1a2e;
   color:white;
+}
+
+input::placeholder{
+  color:rgba(255,255,255,0.5);
 }
 
 button{
@@ -183,6 +198,10 @@ button:hover{
   transform:scale(1.05);
 }
 
+button:active{
+  transform:scale(0.98);
+}
+
 /* КНОПКИ */
 .whatsapp{
   position:fixed;
@@ -191,6 +210,16 @@ button:hover{
   background:#25d366;
   padding:18px;
   border-radius:50%;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:0.3s;
+  z-index:999;
+}
+
+.whatsapp:hover{
+  transform:scale(1.1);
 }
 
 .top{
@@ -201,6 +230,68 @@ button:hover{
   padding:10px 14px;
   border-radius:10px;
   display:none;
+  cursor:pointer;
+  transition:0.3s;
+  z-index:999;
+}
+
+.top:hover{
+  background:#ff1a5f;
+}
+
+/* МОБИЛЬНАЯ АДАПТИВНОСТЬ */
+@media (max-width:768px){
+  h1{
+    font-size:28px;
+  }
+  
+  h2{
+    font-size:22px;
+  }
+  
+  .nav-links{
+    gap:15px;
+    font-size:14px;
+  }
+  
+  header{
+    padding:80px 20px 40px;
+  }
+  
+  header img{
+    width:120px;
+  }
+  
+  section{
+    padding:40px 15px;
+  }
+  
+  .form-box{
+    padding:20px;
+  }
+  
+  input,button{
+    padding:12px;
+  }
+}
+
+@media (max-width:480px){
+  .logo{
+    font-size:16px;
+  }
+  
+  h1{
+    font-size:24px;
+  }
+  
+  .nav-links{
+    gap:10px;
+    font-size:12px;
+  }
+  
+  header img{
+    width:100px;
+  }
 }
 </style>
 </head>
@@ -221,7 +312,7 @@ button:hover{
 </nav>
 
 <header>
-<img src="logo.png">
+<img src="logo.png" alt="UpGrade Logo" loading="lazy">
 <h1>Скорочтение</h1>
 <p>Развитие скорости чтения и концентрации</p>
 <a href="index.html" class="back">⬅ Вернуться на главную</a>
@@ -240,44 +331,64 @@ button:hover{
 <section>
 <h2>Записаться</h2>
 <div class="form-box">
-<input id="name" placeholder="Имя">
-<input id="phone" placeholder="Телефон">
+<input id="name" placeholder="Имя" type="text">
+<input id="phone" placeholder="Телефон" type="tel">
 <button onclick="send()">Записаться на Скорочтение</button>
 </div>
 </section>
 
-<a href="https://wa.me/77474549856" class="whatsapp" target="_blank">💬</a>
+<a href="https://wa.me/77474549856" class="whatsapp" target="_blank" rel="noopener noreferrer">💬</a>
 <div class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
 
 <script>
 
 /* NAVBAR */
 window.addEventListener("scroll",()=>{
-document.querySelector(".navbar")
-.classList.toggle("scrolled",window.scrollY>50);
-
-/* анимация */
-document.querySelectorAll("section").forEach(sec=>{
-if(sec.getBoundingClientRect().top < window.innerHeight-100){
-sec.classList.add("show");
-}
-});
-
-/* вверх */
-document.querySelector(".top").style.display =
-window.scrollY>300?"block":"none";
+  document.querySelector(".navbar")
+  .classList.toggle("scrolled",window.scrollY>50);
+  
+  /* анимация */
+  document.querySelectorAll("section").forEach(sec=>{
+    if(sec.getBoundingClientRect().top < window.innerHeight-100){
+      sec.classList.add("show");
+    }
+  });
+  
+  /* вверх */
+  document.querySelector(".top").style.display =
+  window.scrollY>300?"block":"none";
 });
 
 /* форма */
 function send(){
-let n=name.value.trim();
-let p=phone.value.trim();
-
-if(!n||!p){alert("Заполните поля");return;}
-if(p.length<8){alert("Введите корректный номер");return;}
-
-let msg=`🔥 ЗАЯВКА НА СКОРОЧТЕНИЕ%0AИмя:${encodeURIComponent(n)}%0AТел:${encodeURIComponent(p)}`;
-window.open(`https://wa.me/77474549856?text=${msg}`);
+  let n = document.getElementById("name").value.trim();
+  let p = document.getElementById("phone").value.trim();
+  
+  // Валидация имени
+  if(!n || n.length < 2){
+    alert("Введите корректное имя");
+    return;
+  }
+  
+  // Валидация телефона
+  const phoneRegex = /^[\d+\-\s()]{8,}$/;
+  if(!phoneRegex.test(p)){
+    alert("Введите корректный номер телефона");
+    return;
+  }
+  
+  // Формирование сообщения
+  let msg = `🔥 ЗАЯВКА НА СКОРОЧТЕНИЕ%0AИмя: ${encodeURIComponent(n)}%0AТел: ${encodeURIComponent(p)}`;
+  
+  try{
+    window.open(`https://wa.me/77474549856?text=${msg}`);
+    // Очистка формы после отправки
+    document.getElementById("name").value = "";
+    document.getElementById("phone").value = "";
+  } catch(error){
+    alert("Ошибка при отправке. Попробуйте позже.");
+    console.error(error);
+  }
 }
 </script>
 
