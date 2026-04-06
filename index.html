@@ -47,8 +47,9 @@ body::before{
   position:fixed;
   width:100%;
   padding:15px 25px;
-  z-index:1000;
+  z-index:900;
   transition:background 0.4s ease;
+  top:0;
 }
 
 .navbar.scrolled{
@@ -134,14 +135,18 @@ body::before{
 /* ===== HEADER ===== */
 header{
   text-align:center;
-  padding:140px 20px 100px;
+  padding:160px 20px 100px;
+  position:relative;
+  z-index:1;
 }
 
 header img{
-  width:180px;
+  width:200px;
   height:auto;
   animation:float 3s ease-in-out infinite;
   display:block;
+  margin:0 auto;
+  filter:drop-shadow(0 0 20px rgba(255,106,0,0.3));
 }
 
 @keyframes float{
@@ -195,6 +200,8 @@ section{
   opacity:0;
   transform:translateY(40px);
   transition:all 1s ease;
+  position:relative;
+  z-index:1;
 }
 
 section.show{
@@ -503,11 +510,11 @@ input[type="tel"]{
   }
 
   header{
-    padding:120px 20px 80px;
+    padding:130px 20px 80px;
   }
 
   header img{
-    width:140px;
+    width:160px;
   }
 
   .card-emoji{
@@ -600,6 +607,14 @@ input[type="tel"]{
     padding:12px;
   }
 
+  header{
+    padding:120px 20px 60px;
+  }
+
+  header img{
+    width:140px;
+  }
+
   .whatsapp{
     width:50px;
     height:50px;
@@ -648,7 +663,7 @@ input[type="tel"]{
 
 <!-- HEADER -->
 <header id="main" role="banner">
-<img src="logo.png" alt="UpGrade логотип" loading="lazy" width="180" height="180">
+<img src="logo.png" alt="UpGrade логотип" loading="lazy" width="200" height="200">
 <h1>UpGrade Study Club</h1>
 <p>📚 Улучшим оценки за 1 месяц</p>
 <a href="#form" class="btn">Записаться</a>
