@@ -4,42 +4,243 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Английский — UpGrade Study Club</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
 <style>
-body {margin:0;font-family:'Montserrat',sans-serif;background:#0a0a0f;color:white;}
-header {text-align:center;padding:60px 20px;background:radial-gradient(circle,#1a1a2e,#000);}
-header img {width:220px;filter:drop-shadow(0 0 20px #ff3d77);}
-h1 {font-size:36px;margin:20px 0;background:linear-gradient(45deg,#ff6a00,#ff3d77);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-section {max-width:900px;margin:auto;padding:50px 20px;}
-a {color:#ff6a00;text-decoration:none;font-weight:700;}
-a:hover{text-decoration:underline;}
-ul {list-style:none;padding-left:0;}
-ul li{margin-bottom:15px;padding-left:25px;position:relative;}
-ul li::before {content:"✔";position:absolute;left:0;color:#ff3d77;font-weight:900;}
-.form-box {background:rgba(255,255,255,0.07);padding:30px;border-radius:20px;max-width:450px;margin:auto;}
-input{width:100%;padding:14px;margin:12px 0;border-radius:12px;border:none;font-size:16px;font-weight:600;}
-button{width:100%;padding:16px;background:linear-gradient(45deg,#ff6a00,#ff3d77);color:white;border:none;border-radius:14px;font-weight:700;font-size:18px;cursor:pointer;transition:0.3s;}
-button:hover{background:linear-gradient(45deg,#ff3d77,#ff6a00);}
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background:#0a0a0f;
+  color:white;
+}
+
+/* ФОН */
+body::before{
+  content:"";
+  position:fixed;
+  width:100%;height:100%;
+  background:
+    radial-gradient(circle at 20% 30%, #ff6a00, transparent 30%),
+    radial-gradient(circle at 80% 70%, #ff3d77, transparent 30%);
+  animation:bgMove 20s infinite linear;
+  z-index:-1;
+}
+@keyframes bgMove{
+  50%{background-position:100% 50%,0% 50%;}
+}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  width:100%;
+  padding:15px 25px;
+  z-index:1000;
+  transition:0.4s;
+}
+.navbar.scrolled{
+  background:rgba(10,10,15,0.7);
+  backdrop-filter:blur(12px);
+}
+
+.nav-container{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-weight:800;
+  font-size:20px;
+  background:linear-gradient(45deg,#ff6a00,#ff3d77);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+}
+.nav-links a{
+  color:white;
+  text-decoration:none;
+  position:relative;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  bottom:-5px;
+  left:0;
+  width:0%;
+  height:2px;
+  background:#ff3d77;
+  transition:0.3s;
+}
+.nav-links a:hover::after{
+  width:100%;
+}
+
+/* HEADER */
+header{
+  text-align:center;
+  padding:120px 20px 60px;
+}
+
+header img{
+  width:180px;
+  animation:float 3s infinite;
+}
+
+@keyframes float{
+  50%{transform:translateY(-10px);}
+}
+
+h1{
+  font-size:40px;
+  margin:20px 0;
+  background:linear-gradient(45deg,#ff6a00,#ff3d77);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* КНОПКА */
+.back{
+  display:inline-block;
+  margin-top:15px;
+  color:#ff6a00;
+  text-decoration:none;
+  font-weight:600;
+}
+.back:hover{
+  text-decoration:underline;
+}
+
+/* СЕКЦИИ */
+section{
+  max-width:900px;
+  margin:auto;
+  padding:60px 20px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+h2{
+  margin-bottom:20px;
+  color:#ff3d77;
+}
+
+/* СПИСОК */
+ul{list-style:none;}
+li{
+  margin:12px 0;
+  padding-left:25px;
+  position:relative;
+}
+li::before{
+  content:"✔";
+  position:absolute;
+  left:0;
+  color:#ff3d77;
+}
+
+/* ФОРМА */
+.form-box{
+  background:rgba(255,255,255,0.05);
+  padding:30px;
+  border-radius:20px;
+  margin-top:20px;
+}
+
+input,button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border:none;
+  border-radius:10px;
+}
+
+input{
+  background:#1a1a2e;
+  color:white;
+}
+
+button{
+  background:linear-gradient(45deg,#ff6a00,#ff3d77);
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25d366;
+  padding:18px;
+  border-radius:50%;
+}
+
+/* ВВЕРХ */
+.top{
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  background:#ff3d77;
+  padding:10px 14px;
+  border-radius:10px;
+  display:none;
+}
 </style>
 </head>
+
 <body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+<div class="nav-container">
+<div class="logo">UpGrade</div>
+
+<div class="nav-links">
+<a href="index.html">Главная</a>
+<a href="index.html#courses">Курсы</a>
+<a href="index.html#form">Запись</a>
+</div>
+</div>
+</nav>
+
 <header>
-<img src="logo.png" alt="Logo">
+<img src="logo.png">
 <h1>Английский</h1>
-<p>Изучение английского языка с нуля до уровня общения</p>
-<a href="index.html">⬅ Вернуться на главную</a>
+<p>Изучение английского языка с нуля до разговорного уровня</p>
+<a href="index.html" class="back">⬅ Вернуться на главную</a>
 </header>
 
 <section>
-<h2>Что изучаем</h2>
+<h2>Что вы получите</h2>
 <ul>
-<li>Грамматика и лексика</li>
+<li>Грамматика и словарный запас</li>
 <li>Разговорная практика</li>
 <li>Чтение и аудирование</li>
 <li>Подготовка к экзаменам</li>
 </ul>
+</section>
 
-<h2>Форма записи</h2>
+<section>
+<h2>Записаться</h2>
 <div class="form-box">
 <input id="name" placeholder="Имя">
 <input id="phone" placeholder="Телефон">
@@ -47,14 +248,40 @@ button:hover{background:linear-gradient(45deg,#ff3d77,#ff6a00);}
 </div>
 </section>
 
+<a href="https://wa.me/77474549856" class="whatsapp" target="_blank">💬</a>
+<div class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
 <script>
+
+/* NAVBAR */
+window.addEventListener("scroll",()=>{
+document.querySelector(".navbar")
+.classList.toggle("scrolled",window.scrollY>50);
+
+/* анимация */
+document.querySelectorAll("section").forEach(sec=>{
+if(sec.getBoundingClientRect().top < window.innerHeight-100){
+sec.classList.add("show");
+}
+});
+
+/* вверх */
+document.querySelector(".top").style.display =
+window.scrollY>300?"block":"none";
+});
+
+/* форма */
 function send(){
-const n=document.getElementById('name').value.trim();
-const p=document.getElementById('phone').value.trim();
-if(!n||!p){alert('Заполните все поля!');return;}
-const msg=`🔥 ЗАЯВКА НА АНГЛИЙСКИЙ%0AИмя:${encodeURIComponent(n)}%0AТел:${encodeURIComponent(p)}`;
-window.open(`https://wa.me/77474549856?text=${msg}`,'_blank');
+let n=name.value.trim();
+let p=phone.value.trim();
+
+if(!n||!p){alert("Заполните поля");return;}
+if(p.length<8){alert("Введите корректный номер");return;}
+
+let msg=`🔥 ЗАЯВКА НА АНГЛИЙСКИЙ%0AИмя:${encodeURIComponent(n)}%0AТел:${encodeURIComponent(p)}`;
+window.open(`https://wa.me/77474549856?text=${msg}`);
 }
 </script>
+
 </body>
 </html>
