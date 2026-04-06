@@ -8,7 +8,6 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body {font-family:'Montserrat',sans-serif;background:#0a0a0f;color:white;scroll-behavior:smooth;}
-a{text-decoration:none;color:inherit;}
 
 /* Анимация фона */
 body::before {
@@ -41,10 +40,21 @@ p.subtitle{font-size:18px;margin:5px 0 15px;color:#ff6a00cc;font-weight:600;}
 section{max-width:1100px;margin:auto;padding:80px 20px;scroll-margin-top:80px;}
 h2{text-align:center;font-weight:700;font-size:36px;margin-bottom:40px;color:#ff3d77;text-shadow:1px 1px 5px #ff3d77aa;}
 
+/* SALE */
+.sale{background:linear-gradient(45deg,#ff6a00,#ff3d77);padding:35px 25px;border-radius:20px;text-align:center;box-shadow:0 0 40px #ff3d77cc;font-weight:700;font-size:24px;animation:pulseSale 3s infinite;}
+.sale p{margin:8px 0;font-size:18px;}
+@keyframes pulseSale{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+
 /* Карточки */
 .courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px;}
 .card{background:rgba(255,255,255,0.05);padding:30px;border-radius:20px;font-weight:600;font-size:22px;text-align:center;box-shadow:0 0 10px #ff6a00aa;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;}
 .card:hover{transform:translateY(-12px) scale(1.05);box-shadow:0 0 25px #ff3d77dd;}
+.card a{color:white;font-weight:700;display:block;height:100%;}
+
+/* Список преимуществ */
+ul{max-width:600px;margin:0 auto;padding-left:20px;list-style:none;}
+ul li{position:relative;padding-left:35px;font-size:20px;margin-bottom:20px;}
+ul li::before{content:"✔";position:absolute;left:0;color:#ff3d77;font-weight:900;}
 
 /* Форма */
 .form-box{background:rgba(255,255,255,0.05);padding:40px 30px;border-radius:20px;max-width:500px;margin:auto;box-shadow:0 0 20px #ff3d77aa;display:flex;flex-direction:column;gap:15px;}
@@ -84,14 +94,12 @@ h2{text-align:center;font-weight:700;font-size:36px;margin-bottom:40px;color:#ff
 <section id="courses">
 <h2>Наши направления</h2>
 <div class="courses">
-<div class="card" onclick="showPage('Математика')">📘 Математика</div>
-<div class="card" onclick="showPage('Скорочтение')">📖 Скорочтение</div>
-<div class="card" onclick="showPage('Английский')">🇬🇧 Английский</div>
-<div class="card" onclick="showPage('Продлёнка')">🧒 Продлёнка</div>
+<div class="card"><a href="math.html">📘 Математика</a></div>
+<div class="card"><a href="speedreading.html">📖 Скорочтение</a></div>
+<div class="card"><a href="english.html">🇬🇧 Английский</a></div>
+<div class="card"><a href="aftercare.html">🧒 Продлёнка</a></div>
 </div>
 </section>
-
-<section id="pageContent"></section>
 
 <section id="why">
 <h2>Почему выбирают нас</h2>
@@ -128,31 +136,12 @@ h2{text-align:center;font-weight:700;font-size:36px;margin-bottom:40px;color:#ff
 
 <script>
 function send(){
-const n=document.getElementById('name').value.trim();
-const p=document.getElementById('phone').value.trim();
-const c=document.getElementById('course').value;
-if(!n||!p){alert('Пожалуйста, заполните имя и телефон!');return;}
-const msg=`🔥 НОВАЯ ЗАЯВКА%0AИмя:${encodeURIComponent(n)}%0AТел:${encodeURIComponent(p)}%0AКурс:${encodeURIComponent(c)}`;
-window.open(`https://wa.me/77474549856?text=${msg}`,'_blank');
-}
-
-// Подгрузка контента без отдельной страницы
-function showPage(page){
-let html = '';
-if(page==='Математика'){
-html=`<h2>Математика</h2><ul><li>Арифметика и алгебра</li><li>Геометрия и логика</li><li>Подготовка к олимпиадам</li><li>Контроль домашних заданий</li></ul>`;
-}
-if(page==='Скорочтение'){
-html=`<h2>Скорочтение</h2><ul><li>Скорость чтения</li><li>Понимание текста</li><li>Концентрация и память</li><li>Техника запоминания информации</li></ul>`;
-}
-if(page==='Английский'){
-html=`<h2>Английский</h2><ul><li>Грамматика и лексика</li><li>Разговорная практика</li><li>Чтение и аудирование</li><li>Подготовка к экзаменам</li></ul>`;
-}
-if(page==='Продлёнка'){
-html=`<h2>Продлёнка</h2><ul><li>Помощь с домашними заданиями</li><li>Развивающие игры и занятия</li><li>Подготовка к экзаменам и олимпиадам</li><li>Творческие мастер-классы</li></ul>`;
-}
-document.getElementById('pageContent').innerHTML = html;
-document.getElementById('pageContent').scrollIntoView({behavior:'smooth'});
+  const n=document.getElementById('name').value.trim();
+  const p=document.getElementById('phone').value.trim();
+  const c=document.getElementById('course').value;
+  if(!n||!p){alert('Пожалуйста, заполните имя и телефон!');return;}
+  const msg=`🔥 НОВАЯ ЗАЯВКА%0AИмя:${encodeURIComponent(n)}%0AТел:${encodeURIComponent(p)}%0AКурс:${encodeURIComponent(c)}`;
+  window.open(`https://wa.me/77474549856?text=${msg}`,'_blank');
 }
 </script>
 
