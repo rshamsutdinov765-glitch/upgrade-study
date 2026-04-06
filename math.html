@@ -14,21 +14,27 @@ body{
   font-family:'Montserrat',sans-serif;
   background:#0a0a0f;
   color:white;
+  overflow-x:hidden;
 }
 
 /* ФОН */
 body::before{
   content:"";
   position:fixed;
-  width:100%;height:100%;
+  width:200%;
+  height:200%;
   background:
     radial-gradient(circle at 20% 30%, #ff6a00, transparent 30%),
     radial-gradient(circle at 80% 70%, #ff3d77, transparent 30%);
   animation:bgMove 20s infinite linear;
   z-index:-1;
+  top:-50%;
+  left:-50%;
 }
 @keyframes bgMove{
-  50%{background-position:100% 50%,0% 50%;}
+  0%{transform:translate(0,0);}
+  50%{transform:translate(50px,50px);}
+  100%{transform:translate(0,0);}
 }
 
 /* NAVBAR */
@@ -37,11 +43,13 @@ body::before{
   width:100%;
   padding:15px 25px;
   z-index:1000;
-  transition:0.4s;
+  transition:background 0.4s ease;
+  top:0;
 }
 .navbar.scrolled{
-  background:rgba(10,10,15,0.7);
+  background:rgba(10,10,15,0.95);
   backdrop-filter:blur(12px);
+  box-shadow:0 2px 10px rgba(0,0,0,0.3);
 }
 
 .nav-container{
@@ -58,6 +66,7 @@ body::before{
   background:linear-gradient(45deg,#ff6a00,#ff3d77);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  background-clip:text;
 }
 
 .nav-links{
@@ -68,6 +77,7 @@ body::before{
   color:white;
   text-decoration:none;
   position:relative;
+  transition:color 0.3s ease;
 }
 .nav-links a::after{
   content:"";
@@ -77,7 +87,10 @@ body::before{
   width:0%;
   height:2px;
   background:#ff3d77;
-  transition:0.3s;
+  transition:width 0.3s ease;
+}
+.nav-links a:hover{
+  color:#ff6a00;
 }
 .nav-links a:hover::after{
   width:100%;
@@ -86,24 +99,36 @@ body::before{
 /* HEADER */
 header{
   text-align:center;
-  padding:120px 20px 60px;
+  padding:140px 20px 60px;
+  margin-top:20px;
 }
 
 header img{
   width:180px;
-  animation:float 3s infinite;
+  height:auto;
+  animation:float 3s infinite ease-in-out;
+  filter:drop-shadow(0 0 20px rgba(255,106,0,0.3));
 }
 
 @keyframes float{
-  50%{transform:translateY(-10px);}
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
 }
 
 h1{
-  font-size:40px;
-  margin:20px 0;
+  font-size:48px;
+  margin:20px 0 10px;
   background:linear-gradient(45deg,#ff6a00,#ff3d77);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  background-clip:text;
+  font-weight:800;
+}
+
+header p{
+  font-size:18px;
+  color:#cccccc;
+  margin-bottom:20px;
 }
 
 .back{
@@ -112,9 +137,12 @@ h1{
   color:#ff6a00;
   text-decoration:none;
   font-weight:600;
+  transition:all 0.3s ease;
 }
 .back:hover{
+  color:#ff3d77;
   text-decoration:underline;
+  transform:translateX(-5px);
 }
 
 /* СЕКЦИИ */
@@ -124,7 +152,7 @@ section{
   padding:60px 20px;
   opacity:0;
   transform:translateY(40px);
-  transition:1s;
+  transition:all 1s ease-out;
 }
 section.show{
   opacity:1;
@@ -134,53 +162,83 @@ section.show{
 h2{
   margin-bottom:20px;
   color:#ff3d77;
+  font-size:32px;
 }
 
 /* СПИСОК */
 ul{list-style:none;}
 li{
   margin:12px 0;
-  padding-left:25px;
+  padding-left:30px;
   position:relative;
+  font-size:16px;
+  line-height:1.6;
 }
 li::before{
   content:"✔";
   position:absolute;
   left:0;
-  color:#ff3d77;
+  color:#ff6a00;
+  font-weight:bold;
 }
 
 /* ФОРМА */
 .form-box{
-  background:rgba(255,255,255,0.05);
+  background:rgba(255,255,255,0.08);
   padding:30px;
-  border-radius:20px;
+  border-radius:15px;
   margin-top:20px;
-}
-
-input,button{
-  width:100%;
-  padding:14px;
-  margin-top:10px;
-  border:none;
-  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(10px);
 }
 
 input{
+  width:100%;
+  padding:14px 16px;
+  margin-top:12px;
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:10px;
   background:#1a1a2e;
   color:white;
+  font-family:inherit;
+  font-size:16px;
+  transition:all 0.3s ease;
+}
+
+input::placeholder{
+  color:rgba(255,255,255,0.6);
+}
+
+input:focus{
+  outline:none;
+  border-color:#ff6a00;
+  box-shadow:0 0 10px rgba(255,106,0,0.3);
+  background:#252545;
 }
 
 button{
+  width:100%;
+  padding:14px;
+  margin-top:20px;
+  border:none;
+  border-radius:10px;
   background:linear-gradient(45deg,#ff6a00,#ff3d77);
   color:white;
   font-weight:700;
+  font-size:16px;
+  font-family:inherit;
   cursor:pointer;
-  transition:0.3s;
+  transition:all 0.3s ease;
+  box-shadow:0 4px 15px rgba(255,106,0,0.3);
 }
 
 button:hover{
-  transform:scale(1.05);
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(255,106,0,0.5);
+}
+
+button:active{
+  transform:translateY(0);
 }
 
 /* КНОПКИ */
@@ -191,6 +249,21 @@ button:hover{
   background:#25d366;
   padding:18px;
   border-radius:50%;
+  text-decoration:none;
+  font-size:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:56px;
+  height:56px;
+  transition:all 0.3s ease;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  z-index:999;
+}
+
+.whatsapp:hover{
+  transform:scale(1.1);
+  box-shadow:0 6px 16px rgba(37,211,102,0.4);
 }
 
 .top{
@@ -198,9 +271,38 @@ button:hover{
   bottom:90px;
   right:20px;
   background:#ff3d77;
-  padding:10px 14px;
+  padding:12px 16px;
   border-radius:10px;
   display:none;
+  cursor:pointer;
+  font-size:20px;
+  font-weight:bold;
+  transition:all 0.3s ease;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  z-index:999;
+  border:none;
+  color:white;
+}
+
+.top:hover{
+  transform:translateY(-3px);
+  box-shadow:0 6px 16px rgba(255,61,119,0.4);
+}
+
+@media(max-width:768px){
+  h1{
+    font-size:36px;
+  }
+  .nav-links{
+    gap:15px;
+    font-size:14px;
+  }
+  header{
+    padding:100px 20px 40px;
+  }
+  header img{
+    width:140px;
+  }
 }
 </style>
 </head>
@@ -221,7 +323,7 @@ button:hover{
 </nav>
 
 <header>
-<img src="logo.png">
+<img src="logo.png" alt="UpGrade logo">
 <h1>Математика</h1>
 <p>Углубленные занятия для уверенных результатов</p>
 <a href="index.html" class="back">⬅ Вернуться на главную</a>
@@ -240,44 +342,56 @@ button:hover{
 <section>
 <h2>Записаться</h2>
 <div class="form-box">
-<input id="name" placeholder="Имя">
-<input id="phone" placeholder="Телефон">
+<input type="text" id="userName" placeholder="Имя">
+<input type="tel" id="userPhone" placeholder="Телефон">
 <button onclick="send()">Записаться на Математику</button>
 </div>
 </section>
 
-<a href="https://wa.me/77474549856" class="whatsapp" target="_blank">💬</a>
+<a href="https://wa.me/77474549856" class="whatsapp" target="_blank" rel="noopener noreferrer">💬</a>
 <div class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
 
 <script>
 
 /* NAVBAR */
 window.addEventListener("scroll",()=>{
-document.querySelector(".navbar")
-.classList.toggle("scrolled",window.scrollY>50);
+  const navbar = document.querySelector(".navbar");
+  navbar.classList.toggle("scrolled", window.scrollY > 50);
 
-/* анимация */
-document.querySelectorAll("section").forEach(sec=>{
-if(sec.getBoundingClientRect().top < window.innerHeight-100){
-sec.classList.add("show");
-}
-});
+  /* анимация */
+  document.querySelectorAll("section").forEach(sec=>{
+    if(sec.getBoundingClientRect().top < window.innerHeight - 100){
+      sec.classList.add("show");
+    }
+  });
 
-/* вверх */
-document.querySelector(".top").style.display =
-window.scrollY>300?"block":"none";
+  /* вверх */
+  const topBtn = document.querySelector(".top");
+  topBtn.style.display = window.scrollY > 300 ? "block" : "none";
 });
 
 /* форма */
 function send(){
-let n=name.value.trim();
-let p=phone.value.trim();
+  const nameInput = document.getElementById("userName");
+  const phoneInput = document.getElementById("userPhone");
+  
+  let n = nameInput.value.trim();
+  let p = phoneInput.value.trim();
 
-if(!n||!p){alert("Заполните поля");return;}
-if(p.length<8){alert("Введите корректный номер");return;}
+  if(!n || !p){
+    alert("Заполните все поля");
+    return;
+  }
+  if(p.length < 8){
+    alert("Введите корректный номер телефона");
+    return;
+  }
 
-let msg=`🔥 ЗАЯВКА НА МАТЕМАТИКУ%0AИмя:${encodeURIComponent(n)}%0AТел:${encodeURIComponent(p)}`;
-window.open(`https://wa.me/77474549856?text=${msg}`);
+  let msg = `🔥 ЗАЯВКА НА МАТЕМАТИКУ%0AИмя: ${encodeURIComponent(n)}%0AТелефон: ${encodeURIComponent(p)}`;
+  window.open(`https://wa.me/77474549856?text=${msg}`);
+  
+  nameInput.value = "";
+  phoneInput.value = "";
 }
 </script>
 
