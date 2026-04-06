@@ -362,15 +362,26 @@ window.scrollY>400 ? "block":"none";
 
 /* форма */
 function send(){
-let n=name.value.trim();
-let p=phone.value.trim();
-let c=course.value;
+  // Получаем элементы по ID
+  let n = document.getElementById('name').value.trim();
+  let p = document.getElementById('phone').value.trim();
+  let c = document.getElementById('course').value;
 
-if(!n||!p){alert("Введите данные");return;}
-if(p.length<8){alert("Введите корректный телефон");return;}
+  if(!n || !p){
+    alert("Введите данные");
+    return;
+  }
 
-let msg=`🔥 НОВАЯ ЗАЯВКА%0AИмя:${encodeURIComponent(n)}%0AТел:${encodeURIComponent(p)}%0AКурс:${encodeURIComponent(c)}`;
-window.open(`https://wa.me/77474549856?text=${msg}`);
+  if(p.length < 8){
+    alert("Введите корректный телефон");
+    return;
+  }
+
+  // Формируем сообщение
+  let msg = `Здравствуйте! Хочу записаться на курс "${c}"%0AИмя: ${n}%0AТелефон: ${p}`;
+
+  // Открываем WhatsApp с готовым сообщением
+  window.open(`https://wa.me/77474549856?text=${encodeURIComponent(msg)}`, '_blank');
 }
 </script>
 
