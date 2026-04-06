@@ -5,21 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UpGrade Study Club</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-
 <style>
-/* --- Общие стили --- */
-* {margin:0; padding:0; box-sizing:border-box;}
-body {font-family:'Montserrat',sans-serif; background:#0a0a0f; color:white; line-height:1.6; scroll-behavior:smooth;}
-a {text-decoration:none; color:inherit;}
-
-/* --- Анимированный фон --- */
+*{margin:0;padding:0;box-sizing:border-box;}
+body {font-family:'Montserrat',sans-serif;background:#0a0a0f;color:white;scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit;}
+/* Анимация фона */
 body::before {
-  content:"";
-  position:fixed;
-  top:0; left:0; width:100%; height:100%;
-  background: radial-gradient(circle at 20% 30%, #ff6a00, transparent 30%), radial-gradient(circle at 80% 70%, #ff3d77, transparent 30%);
-  background-size: 200% 200%;
-  animation: bgMove 20s infinite linear;
+  content:""; position:fixed; top:0; left:0; width:100%; height:100%;
+  background: radial-gradient(circle at 20% 30%, #ff6a00, transparent 30%),
+              radial-gradient(circle at 80% 70%, #ff3d77, transparent 30%);
+  background-size:200% 200%;
+  animation:bgMove 20s infinite linear;
   z-index:-1;
 }
 @keyframes bgMove {
@@ -28,185 +24,125 @@ body::before {
   100%{background-position:0% 0%, 100% 100%;}
 }
 
-/* --- HEADER --- */
-header {
-  text-align:center; padding:80px 20px 60px;
-  position: relative;
-}
-header img {
-  width:220px; filter:drop-shadow(0 0 20px #ff3d77);
-  animation:float 3s infinite ease-in-out;
-}
-@keyframes float {0%{transform:translateY(0);}50%{transform:translateY(-15px);}100%{transform:translateY(0);}}
-h1 {
-  font-size:48px; margin:20px 0 10px;
-  background:linear-gradient(45deg,#ff6a00,#ff3d77);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-}
-p.subtitle {font-size:18px;margin:5px 0 15px;color:#ff6a00cc;font-weight:600;}
-.nav-btns {margin-top:20px;}
-.nav-btns a {
-  display:inline-block;
-  margin:5px;
-  padding:12px 30px;
-  border-radius:12px;
-  background:linear-gradient(45deg,#ff6a00,#ff3d77);
-  color:white;
-  font-weight:700;
-  transition:transform 0.3s,box-shadow 0.3s;
-}
-.nav-btns a:hover {transform:scale(1.1); box-shadow:0 0 25px #ff3d77ff;}
+/* Header */
+header{text-align:center;padding:80px 20px 60px;}
+header img{width:220px;filter:drop-shadow(0 0 20px #ff3d77);animation:float 3s infinite ease-in-out;}
+@keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-15px);}100%{transform:translateY(0);}}
+h1{font-size:48px;margin:20px 0;background:linear-gradient(45deg,#ff6a00,#ff3d77);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+p.subtitle{font-size:18px;margin:5px 0 15px;color:#ff6a00cc;font-weight:600;}
 
-/* --- Секции --- */
-section {max-width:1100px;margin:auto;padding:80px 20px; scroll-margin-top:80px;}
-h2 {font-weight:700;font-size:36px;margin-bottom:40px;color:#ff3d77;text-align:center;text-shadow:1px 1px 5px #ff3d77aa;}
+/* Навигация */
+.nav-btns{margin-top:20px;}
+.nav-btns a{display:inline-block;margin:5px;padding:12px 30px;border-radius:12px;background:linear-gradient(45deg,#ff6a00,#ff3d77);color:white;font-weight:700;transition:transform 0.3s,box-shadow 0.3s;}
+.nav-btns a:hover{transform:scale(1.1);box-shadow:0 0 25px #ff3d77ff;}
 
-/* --- SALE --- */
-.sale {
-  background:linear-gradient(45deg,#ff6a00,#ff3d77);
-  padding:35px 25px; border-radius:20px;
-  text-align:center; box-shadow:0 0 40px #ff3d77cc;
-  font-weight:700; font-size:24px;
-  animation:pulseSale 3s infinite;
-}
-.sale p {margin:8px 0; font-size:18px;}
-@keyframes pulseSale {0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+/* Секции */
+section{max-width:1100px;margin:auto;padding:80px 20px;scroll-margin-top:80px;}
+h2{text-align:center;font-weight:700;font-size:36px;margin-bottom:40px;color:#ff3d77;text-shadow:1px 1px 5px #ff3d77aa;}
 
-/* --- КАРТОЧКИ --- */
-.courses {display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:25px;}
-.card {background:rgba(255,255,255,0.05); padding:30px; border-radius:20px; font-weight:600; font-size:22px; text-align:center; box-shadow:0 0 10px #ff6a00aa; transition:transform 0.3s,box-shadow 0.3s; position:relative; overflow:hidden;}
-.card::after {content:""; position:absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent); opacity:0; transition:opacity 0.3s; border-radius:20px;}
-.card:hover {transform:translateY(-12px) scale(1.05); box-shadow:0 0 25px #ff3d77dd;}
-.card:hover::after {opacity:1;}
-.card a {color:white; display:block; height:100%; font-size:22px; font-weight:700;}
+/* SALE */
+.sale{background:linear-gradient(45deg,#ff6a00,#ff3d77);padding:35px 25px;border-radius:20px;text-align:center;box-shadow:0 0 40px #ff3d77cc;font-weight:700;font-size:24px;animation:pulseSale 3s infinite;}
+.sale p{margin:8px 0;font-size:18px;}
+@keyframes pulseSale{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
 
-/* --- СПИСОК --- */
-ul {max-width:600px; margin:0 auto; padding-left:20px; list-style:none;}
-ul li {position:relative; padding-left:35px; font-size:20px; margin-bottom:20px;}
-ul li::before {content:"✔"; position:absolute; left:0; top:0; color:#ff3d77; font-weight:900; font-size:22px;}
+/* Карточки */
+.courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px;}
+.card{background:rgba(255,255,255,0.05);padding:30px;border-radius:20px;font-weight:600;font-size:22px;text-align:center;box-shadow:0 0 10px #ff6a00aa;transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;}
+.card:hover{transform:translateY(-12px) scale(1.05);box-shadow:0 0 25px #ff3d77dd;}
+.card a{color:white;font-weight:700;display:block;height:100%;}
 
-/* --- ФОРМА --- */
-.form-box {background: rgba(255,255,255,0.05); padding:40px 30px; border-radius:20px; max-width:500px; margin:auto; box-shadow:0 0 20px #ff3d77aa; display:flex; flex-direction:column; gap:15px;}
-.form-box input, .form-box select, .form-box button {padding:15px 20px; border-radius:12px; border:none; font-size:16px; font-weight:600;}
-.form-box input, .form-box select { background:#1a1a2e; color:white; }
-.form-box input:focus, .form-box select:focus { outline:2px solid #ff3d77; }
-.form-box button {background:linear-gradient(45deg,#ff6a00,#ff3d77); color:white; cursor:pointer; transition:transform 0.3s, box-shadow 0.3s;}
-.form-box button:hover {transform:scale(1.05); box-shadow:0 0 25px #ff3d77dd;}
+/* Список преимуществ */
+ul{max-width:600px;margin:0 auto;padding-left:20px;list-style:none;}
+ul li{position:relative;padding-left:35px;font-size:20px;margin-bottom:20px;}
+ul li::before{content:"✔";position:absolute;left:0;color:#ff3d77;font-weight:900;}
 
-/* --- WHATSAPP --- */
-.whatsapp {position:fixed; bottom:25px; right:25px; background:#25d366; padding:20px; border-radius:50%; box-shadow:0 0 20px #25d366cc; color:white; font-size:28px; animation:pulse 2.5s infinite; z-index:1000;}
-@keyframes pulse {0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7);}70%{box-shadow:0 0 0 15px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
+/* Форма */
+.form-box{background:rgba(255,255,255,0.05);padding:40px 30px;border-radius:20px;max-width:500px;margin:auto;box-shadow:0 0 20px #ff3d77aa;display:flex;flex-direction:column;gap:15px;}
+.form-box input, .form-box select, .form-box button{padding:15px 20px;border-radius:12px;border:none;font-size:16px;font-weight:600;}
+.form-box input,.form-box select{background:#1a1a2e;color:white;}
+.form-box input:focus,.form-box select:focus{outline:2px solid #ff3d77;}
+.form-box button{background:linear-gradient(45deg,#ff6a00,#ff3d77);color:white;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;}
+.form-box button:hover{transform:scale(1.05);box-shadow:0 0 25px #ff3d77dd;}
+
+/* WhatsApp */
+.whatsapp{position:fixed;bottom:25px;right:25px;background:#25d366;padding:20px;border-radius:50%;box-shadow:0 0 20px #25d366cc;color:white;font-size:28px;animation:pulse 2.5s infinite;z-index:1000;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.7);}70%{box-shadow:0 0 0 15px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
 </style>
 </head>
-
 <body>
 
 <header>
-  <img src="logo.png" alt="UpGrade Study Club logo" />
-  <h1>UpGrade Study Club</h1>
-  <p class="subtitle">📚 Улучшим оценки вашего ребёнка уже за 1 месяц</p>
-  <p class="subtitle">Занятия на Русском и Казахском</p>
-  <div class="nav-btns">
-    <a href="#sale">🎁 Пробный урок</a>
-    <a href="#courses">📚 Курсы</a>
-    <a href="#why">Почему выбирают нас</a>
-    <a href="#form">✏ Записаться</a>
-    <a href="#contacts">📞 Контакты</a>
-  </div>
+<img src="logo.png" alt="UpGrade Study Club logo">
+<h1>UpGrade Study Club</h1>
+<p class="subtitle">📚 Улучшим оценки вашего ребёнка уже за 1 месяц</p>
+<p class="subtitle">Занятия на Русском и Казахском</p>
+<div class="nav-btns">
+<a href="#sale">🎁 Пробный урок</a>
+<a href="#courses">📚 Курсы</a>
+<a href="#why">Почему выбирают нас</a>
+<a href="#form">✏ Записаться</a>
+<a href="#contacts">📞 Контакты</a>
+</div>
 </header>
 
 <section id="sale">
-  <div class="sale">
-    Бесплатный пробный урок <br>Только для новых учеников
-  </div>
+<div class="sale">
+Бесплатный пробный урок <br>Только для новых учеников
+</div>
 </section>
 
 <section id="courses">
-  <h2>Наши направления</h2>
-  <div class="courses">
-    <div class="card"><a href="math.html">📘 Математика</a></div>
-<div class="card"><a href="speedreading.html">📖 Скорочтение</a></div>
-<div class="card"><a href="english.html">🇬🇧 Английский</a></div>
-<div class="card"><a href="aftercare.html">🧒 Продлёнка</a></div>
-  </div>
+<h2>Наши направления</h2>
+<div class="courses">
+<div class="card"><a href="math.html" target="_blank">📘 Математика</a></div>
+<div class="card"><a href="speedreading.html" target="_blank">📖 Скорочтение</a></div>
+<div class="card"><a href="english.html" target="_blank">🇬🇧 Английский</a></div>
+<div class="card"><a href="aftercare.html" target="_blank">🧒 Продлёнка</a></div>
+</div>
 </section>
 
 <section id="why">
-  <h2>Почему выбирают нас</h2>
-  <ul>
-    <li>Маленькие группы</li>
-    <li>Индивидуальный подход</li>
-    <li>Результат уже через 1 месяц</li>
-    <li>Контроль домашних заданий</li>
-  </ul>
+<h2>Почему выбирают нас</h2>
+<ul>
+<li>Маленькие группы</li>
+<li>Индивидуальный подход</li>
+<li>Результат уже через 1 месяц</li>
+<li>Контроль домашних заданий</li>
+</ul>
 </section>
 
 <section id="form">
-  <div class="form-box">
-    <h2>Записаться сейчас</h2>
-    <input id="name" placeholder="Имя">
-    <input id="phone" placeholder="Телефон">
-    <select id="course">
-      <option>Математика</option>
-      <option>Скорочтение</option>
-      <option>Английский</option>
-      <option>Продлёнка</option>
-    </select>
-    <button onclick="send()">Получить бесплатный урок</button>
-  </div>
+<div class="form-box">
+<h2>Записаться сейчас</h2>
+<input id="name" placeholder="Имя">
+<input id="phone" placeholder="Телефон">
+<select id="course">
+<option>Математика</option>
+<option>Скорочтение</option>
+<option>Английский</option>
+<option>Продлёнка</option>
+</select>
+<button onclick="send()">Получить бесплатный урок</button>
+</div>
 </section>
 
 <section id="contacts">
-  <h2>Контакты</h2>
-  <p>📍 Алматы, Айгерим, Молдагулова 19</p>
-  <p>📞 87474549856</p>
-</section>
-
-<!-- Модальные "страницы" -->
-<section id="math" style="display:none;">
-  <h2>📘 Математика</h2>
-  <p>Подробная информация о курсе по математике.</p>
-  <a href="#courses" style="color:#ff6a00;">⬅ Вернуться</a>
-</section>
-<section id="speedreading" style="display:none;">
-  <h2>📖 Скорочтение</h2>
-  <p>Подробная информация о курсе по скорочтению.</p>
-  <a href="#courses" style="color:#ff6a00;">⬅ Вернуться</a>
-</section>
-<section id="english" style="display:none;">
-  <h2>🇬🇧 Английский</h2>
-  <p>Подробная информация о курсе по английскому.</p>
-  <a href="#courses" style="color:#ff6a00;">⬅ Вернуться</a>
-</section>
-<section id="aftercare" style="display:none;">
-  <h2>🧒 Продлёнка</h2>
-  <p>Подробная информация о продлёнке.</p>
-  <a href="#courses" style="color:#ff6a00;">⬅ Вернуться</a>
+<h2>Контакты</h2>
+<p>📍 Алматы, Айгерим, Молдагулова 19</p>
+<p>📞 87474549856</p>
 </section>
 
 <a href="https://wa.me/77474549856" class="whatsapp" target="_blank">💬</a>
 
 <script>
 function send(){
-  const n = document.getElementById('name').value.trim();
-  const p = document.getElementById('phone').value.trim();
-  const c = document.getElementById('course').value;
-  if(!n || !p){ alert('Пожалуйста, заполните имя и телефон!'); return; }
-  const msg = `🔥 НОВАЯ ЗАЯВКА%0AИмя: ${encodeURIComponent(n)}%0AТел: ${encodeURIComponent(p)}%0AКурс: ${encodeURIComponent(c)}`;
-  window.open(`https://wa.me/77474549856?text=${msg}`, '_blank');
+const n=document.getElementById('name').value.trim();
+const p=document.getElementById('phone').value.trim();
+const c=document.getElementById('course').value;
+if(!n||!p){alert('Пожалуйста, заполните имя и телефон!');return;}
+const msg=`🔥 НОВАЯ ЗАЯВКА%0AИмя:${encodeURIComponent(n)}%0AТел:${encodeURIComponent(p)}%0AКурс:${encodeURIComponent(c)}`;
+window.open(`https://wa.me/77474549856?text=${msg}`,'_blank');
 }
-
-// Показываем модальные "страницы"
-const links = document.querySelectorAll('.card a');
-links.forEach(a=>{
-  a.addEventListener('click', function(e){
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    document.querySelectorAll('#math, #speedreading, #english, #aftercare').forEach(s=>s.style.display='none');
-    target.style.display = 'block';
-    target.scrollIntoView({behavior:'smooth'});
-  });
-});
 </script>
 
 </body>
