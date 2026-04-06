@@ -3,32 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UpGrade Study Club</title>
+<meta name="description" content="UpGrade Study Club - улучшим оценки за 1 месяц. Математика, скорочтение, английский язык и продлёнка.">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="keywords" content="образование, курсы, математика, английский, скорочтение">
+<title>UpGrade Study Club - Улучшим оценки за 1 месяц</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+/* ===== БАЗОВЫЕ СТИЛИ ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:'Montserrat',sans-serif;
   background:#0a0a0f;
   color:white;
-  scroll-behavior:smooth;
+  overflow-x:hidden;
 }
 
 /* ===== ФОН ===== */
 body::before{
   content:"";
   position:fixed;
-  width:100%;height:100%;
+  width:100%;
+  height:100%;
   background:
     radial-gradient(circle at 20% 30%, #ff6a00, transparent 30%),
     radial-gradient(circle at 80% 70%, #ff3d77, transparent 30%);
-  animation:bgMove 20s infinite linear;
   z-index:-1;
-}
-@keyframes bgMove{
-  50%{background-position:100% 50%,0% 50%;}
+  pointer-events:none;
 }
 
 /* ===== NAVBAR ===== */
@@ -37,11 +48,13 @@ body::before{
   width:100%;
   padding:15px 25px;
   z-index:1000;
-  transition:0.4s;
+  transition:background 0.4s ease;
 }
+
 .navbar.scrolled{
-  background:rgba(10,10,15,0.7);
+  background:rgba(10,10,15,0.85);
   backdrop-filter:blur(12px);
+  box-shadow:0 2px 10px rgba(0,0,0,0.3);
 }
 
 .nav-container{
@@ -58,6 +71,7 @@ body::before{
   background:linear-gradient(45deg,#ff6a00,#ff3d77);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  background-clip:text;
 }
 
 /* ссылки */
@@ -65,36 +79,56 @@ body::before{
   display:flex;
   gap:30px;
 }
+
 .nav-links a{
   color:white;
   text-decoration:none;
   position:relative;
+  transition:color 0.3s ease;
+  font-size:15px;
 }
+
 .nav-links a::after{
   content:"";
   position:absolute;
   bottom:-5px;
   left:0;
-  width:0%;
+  width:0;
   height:2px;
   background:#ff3d77;
-  transition:0.3s;
+  transition:width 0.3s ease;
 }
+
 .nav-links a:hover::after{
   width:100%;
 }
 
-/* кнопка */
+.nav-links a:focus{
+  outline:2px solid #ff3d77;
+  outline-offset:5px;
+}
+
+/* кнопка навигации */
 .nav-btn{
   padding:10px 18px;
   border-radius:10px;
   background:linear-gradient(45deg,#ff6a00,#ff3d77);
   text-decoration:none;
   color:white;
-  transition:0.3s;
+  transition:transform 0.3s ease;
+  display:inline-block;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
 }
+
 .nav-btn:hover{
   transform:scale(1.1);
+}
+
+.nav-btn:focus{
+  outline:2px solid white;
+  outline-offset:3px;
 }
 
 /* ===== HEADER ===== */
@@ -102,19 +136,31 @@ header{
   text-align:center;
   padding:140px 20px 100px;
 }
+
 header img{
   width:180px;
-  animation:float 3s infinite;
+  height:auto;
+  animation:float 3s ease-in-out infinite;
+  display:block;
 }
+
 @keyframes float{
+  0%, 100%{transform:translateY(0);}
   50%{transform:translateY(-12px);}
 }
+
 h1{
   font-size:44px;
   margin:20px 0;
   background:linear-gradient(45deg,#ff6a00,#ff3d77);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+header p{
+  font-size:18px;
+  margin-bottom:10px;
 }
 
 .btn{
@@ -126,11 +172,19 @@ h1{
   text-decoration:none;
   color:white;
   font-weight:700;
-  transition:0.3s;
+  transition:all 0.3s ease;
+  border:none;
+  cursor:pointer;
 }
+
 .btn:hover{
   transform:scale(1.1);
   box-shadow:0 0 25px #ff3d77;
+}
+
+.btn:focus{
+  outline:2px solid white;
+  outline-offset:3px;
 }
 
 /* ===== СЕКЦИИ ===== */
@@ -140,8 +194,9 @@ section{
   padding:80px 20px;
   opacity:0;
   transform:translateY(40px);
-  transition:1s;
+  transition:all 1s ease;
 }
+
 section.show{
   opacity:1;
   transform:translateY(0);
@@ -151,6 +206,7 @@ h2{
   text-align:center;
   margin-bottom:30px;
   color:#ff3d77;
+  font-size:32px;
 }
 
 /* ===== SALE ===== */
@@ -159,9 +215,16 @@ h2{
   padding:30px;
   border-radius:20px;
   text-align:center;
-  animation:pulse 3s infinite;
 }
+
+.sale-content{
+  animation:pulse 3s ease-in-out infinite;
+  font-size:20px;
+  font-weight:600;
+}
+
 @keyframes pulse{
+  0%, 100%{transform:scale(1);}
   50%{transform:scale(1.05);}
 }
 
@@ -179,10 +242,22 @@ h2{
   text-align:center;
   position:relative;
   overflow:hidden;
-  transition:0.4s;
+  transition:all 0.4s ease;
+  text-decoration:none;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
 }
 
-/* glow эффект */
+.card-emoji{
+  font-size:2.5em;
+  display:block;
+}
+
 .card::before{
   content:"";
   position:absolute;
@@ -191,7 +266,7 @@ h2{
   background:radial-gradient(circle, rgba(255,255,255,0.15), transparent 60%);
   top:-100%;
   left:-100%;
-  transition:0.5s;
+  transition:all 0.5s ease;
 }
 
 .card:hover::before{
@@ -203,15 +278,32 @@ h2{
   transform:translateY(-12px) scale(1.05);
 }
 
-.card a{
-  color:white;
-  text-decoration:none;
+.card:focus{
+  outline:2px solid #ff3d77;
+  outline-offset:3px;
 }
 
 /* ===== СПИСОК ===== */
-ul{max-width:600px;margin:auto;list-style:none;}
-li{margin:15px 0;padding-left:25px;position:relative;}
-li::before{content:"✔";position:absolute;left:0;color:#ff3d77;}
+ul{
+  max-width:600px;
+  margin:auto;
+  list-style:none;
+}
+
+li{
+  margin:15px 0;
+  padding-left:25px;
+  position:relative;
+  font-size:16px;
+}
+
+li::before{
+  content:"✔";
+  position:absolute;
+  left:0;
+  color:#ff3d77;
+  font-weight:bold;
+}
 
 /* ===== ФОРМА ===== */
 .form-box{
@@ -221,26 +313,92 @@ li::before{content:"✔";position:absolute;left:0;color:#ff3d77;}
   flex-direction:column;
   gap:15px;
 }
-input,select,button{
+
+form{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+input,select{
   padding:15px;
   border:none;
   border-radius:10px;
+  background:#1a1a2e;
+  color:white;
+  font-family:inherit;
+  font-size:16px;
+  transition:all 0.3s ease;
 }
-input,select{background:#1a1a2e;color:white;}
-button{
+
+input:focus,select:focus{
+  outline:none;
+  background:#252547;
+  box-shadow:0 0 10px rgba(255,61,119,0.3);
+}
+
+input::placeholder{
+  color:rgba(255,255,255,0.5);
+}
+
+input[type="tel"]{
+  letter-spacing:0.5px;
+}
+
+.form-btn{
+  padding:15px;
+  border:none;
+  border-radius:10px;
   background:linear-gradient(45deg,#ff6a00,#ff3d77);
   color:white;
   cursor:pointer;
+  font-weight:bold;
+  transition:all 0.3s ease;
+  font-family:inherit;
+  font-size:16px;
 }
-button:hover{transform:scale(1.05);}
+
+.form-btn:hover:not(:disabled){
+  transform:scale(1.05);
+}
+
+.form-btn:active:not(:disabled){
+  transform:scale(0.98);
+}
+
+.form-btn:disabled{
+  opacity:0.7;
+  cursor:not-allowed;
+}
+
+.form-btn:focus{
+  outline:2px solid white;
+  outline-offset:3px;
+}
 
 /* сообщение после отправки */
-#msgSent{
+.success-msg{
   display:none;
   text-align:center;
   color:#00ff99;
   font-weight:700;
   margin-top:10px;
+  padding:10px;
+  background:rgba(0,255,153,0.1);
+  border-radius:8px;
+  border-left:4px solid #00ff99;
+}
+
+.error-msg{
+  display:none;
+  text-align:center;
+  color:#ff6b6b;
+  font-weight:600;
+  margin-top:10px;
+  padding:10px;
+  background:rgba(255,107,107,0.1);
+  border-radius:8px;
+  border-left:4px solid #ff6b6b;
 }
 
 /* ===== КНОПКИ ===== */
@@ -251,16 +409,221 @@ button:hover{transform:scale(1.05);}
   background:#25d366;
   padding:18px;
   border-radius:50%;
+  font-size:24px;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all 0.3s ease;
+  z-index:999;
+  width:56px;
+  height:56px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+
+.whatsapp:hover{
+  transform:scale(1.1);
+  box-shadow:0 6px 16px rgba(0,0,0,0.4);
+}
+
+.whatsapp:focus{
+  outline:2px solid white;
+  outline-offset:3px;
 }
 
 .top{
   position:fixed;
-  bottom:90px;
+  bottom:100px;
   right:20px;
   background:#ff3d77;
   padding:10px 15px;
+  border:none;
   border-radius:10px;
+  color:white;
+  cursor:pointer;
   display:none;
+  transition:all 0.3s ease;
+  z-index:999;
+  font-size:18px;
+  font-weight:bold;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+
+.top:hover{
+  transform:scale(1.1);
+}
+
+.top:focus{
+  outline:2px solid white;
+  outline-offset:3px;
+}
+
+/* ===== КОНТАКТЫ ===== */
+#contacts p{
+  font-size:16px;
+  margin:10px 0;
+}
+
+#contacts a{
+  color:#ff3d77;
+  text-decoration:none;
+  transition:color 0.3s ease;
+}
+
+#contacts a:hover{
+  color:#ff6a00;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:768px){
+  .nav-links{
+    gap:15px;
+    font-size:13px;
+  }
+
+  h1{
+    font-size:32px;
+  }
+
+  h2{
+    font-size:24px;
+  }
+
+  .btn{
+    padding:14px 30px;
+    font-size:14px;
+  }
+
+  section{
+    padding:50px 15px;
+  }
+
+  .courses{
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  }
+
+  header{
+    padding:120px 20px 80px;
+  }
+
+  header img{
+    width:140px;
+  }
+
+  .card-emoji{
+    font-size:2em;
+  }
+
+  .form-box{
+    padding:0 10px;
+  }
+
+  input,select,.form-btn{
+    font-size:16px;
+  }
+}
+
+@media (max-width:480px){
+  .logo{
+    font-size:18px;
+  }
+
+  .nav-links{
+    gap:10px;
+    font-size:12px;
+  }
+
+  .nav-btn{
+    padding:8px 12px;
+    font-size:12px;
+  }
+
+  h1{
+    font-size:24px;
+    margin:15px 0;
+  }
+
+  header p{
+    font-size:16px;
+  }
+
+  h2{
+    font-size:20px;
+    margin-bottom:20px;
+  }
+
+  .btn{
+    padding:12px 24px;
+    font-size:13px;
+    margin-top:15px;
+  }
+
+  section{
+    padding:40px 15px;
+  }
+
+  .courses{
+    gap:15px;
+  }
+
+  .card{
+    padding:20px;
+  }
+
+  .card-emoji{
+    font-size:1.8em;
+  }
+
+  .sale{
+    padding:20px;
+  }
+
+  .sale-content{
+    font-size:16px;
+  }
+
+  ul{
+    max-width:100%;
+  }
+
+  li{
+    margin:12px 0;
+    font-size:14px;
+  }
+
+  .form-box{
+    max-width:100%;
+  }
+
+  input,select,.form-btn{
+    font-size:16px;
+    padding:12px;
+  }
+
+  .whatsapp{
+    width:50px;
+    height:50px;
+    font-size:20px;
+    bottom:15px;
+    right:15px;
+  }
+
+  .top{
+    bottom:80px;
+    right:15px;
+    padding:8px 12px;
+    font-size:16px;
+  }
+}
+
+/* ===== ПЕЧАТЬ ===== */
+@media print{
+  .navbar,
+  .whatsapp,
+  .top,
+  form{
+    display:none;
+  }
 }
 </style>
 </head>
@@ -268,12 +631,12 @@ button:hover{transform:scale(1.05);}
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar">
+<nav class="navbar" role="navigation" aria-label="Основная навигация">
 <div class="nav-container">
-<div class="logo">UpGrade</div>
+<div class="logo" aria-label="UpGrade логотип">UpGrade</div>
 
 <div class="nav-links">
-<a href="#">Главная</a>
+<a href="#main">Главная</a>
 <a href="#courses">Курсы</a>
 <a href="#form">Запись</a>
 <a href="#contacts">Контакты</a>
@@ -283,41 +646,44 @@ button:hover{transform:scale(1.05);}
 </div>
 </nav>
 
-<header>
-<img src="logo.png">
+<!-- HEADER -->
+<header id="main" role="banner">
+<img src="logo.png" alt="UpGrade логотип" loading="lazy" width="180" height="180">
 <h1>UpGrade Study Club</h1>
 <p>📚 Улучшим оценки за 1 месяц</p>
 <a href="#form" class="btn">Записаться</a>
 </header>
 
-<section>
-<div class="sale">🎁 Бесплатный пробный урок</div>
+<!-- SALE SECTION -->
+<section class="sale" role="complementary" aria-label="Специальное предложение">
+<div class="sale-content">🎁 Бесплатный пробный урок</div>
 </section>
 
-<section id="courses">
+<!-- COURSES SECTION -->
+<section id="courses" aria-label="Доступные курсы">
 <h2>Курсы</h2>
 <div class="courses">
-
-<div class="card" onclick="location.href='math.html'">
-📘 Математика
-</div>
-
-<div class="card" onclick="location.href='speedreading.html'">
-📖 Скорочтение
-</div>
-
-<div class="card" onclick="location.href='english.html'">
-🇬🇧 Английский
-</div>
-
-<div class="card" onclick="location.href='aftercare.html'">
-🧒 Продлёнка
-</div>
-
+<a href="math.html" class="card" role="link" tabindex="0">
+<span class="card-emoji">📘</span>
+<span>Математика</span>
+</a>
+<a href="speedreading.html" class="card" role="link" tabindex="0">
+<span class="card-emoji">📖</span>
+<span>Скорочтение</span>
+</a>
+<a href="english.html" class="card" role="link" tabindex="0">
+<span class="card-emoji">🇬🇧</span>
+<span>Английский</span>
+</a>
+<a href="aftercare.html" class="card" role="link" tabindex="0">
+<span class="card-emoji">🧒</span>
+<span>Продлёнка</span>
+</a>
 </div>
 </section>
 
-<section>
+<!-- WHY US SECTION -->
+<section aria-label="Преимущества">
 <h2>Почему мы</h2>
 <ul>
 <li>Маленькие группы</li>
@@ -326,78 +692,198 @@ button:hover{transform:scale(1.05);}
 </ul>
 </section>
 
-<section id="form">
+<!-- FORM SECTION -->
+<section id="form" aria-label="Форма записи на курс">
 <div class="form-box">
 <h2>Запись</h2>
-<input id="name" placeholder="Имя">
-<input id="phone" placeholder="Телефон">
-<select id="course">
-<option>Математика</option>
-<option>Скорочтение</option>
-<option>Английский</option>
-<option>Продлёнка</option>
+<form id="enrollForm" novalidate>
+<input 
+  id="name" 
+  type="text"
+  placeholder="Имя" 
+  aria-label="Ваше имя"
+  minlength="2"
+  maxlength="50"
+  required>
+
+<input 
+  id="phone" 
+  type="tel"
+  placeholder="Телефон" 
+  aria-label="Номер телефона"
+  pattern="[0-9\-\+\s\(\)]{8,}"
+  title="Введите корректный номер телефона (минимум 8 символов)"
+  required>
+
+<select id="course" aria-label="Выберите курс" required>
+<option value="">-- Выберите курс --</option>
+<option value="Математика">Математика</option>
+<option value="Скорочтение">Скорочтение</option>
+<option value="Английский">Английский</option>
+<option value="Продлёнка">Продлёнка</option>
 </select>
-<button onclick="send()">Получить урок</button>
-<p id="msgSent">✅ Ваша заявка отправлена! Ожидайте ответа.</p>
+
+<button type="submit" class="form-btn">Получить урок</button>
+
+<p id="msgSent" class="success-msg" role="status" aria-live="polite">✅ Ваша заявка отправлена! Ожидайте ответа.</p>
+<p id="msgError" class="error-msg" role="alert" aria-live="assertive"></p>
+</form>
 </div>
 </section>
 
-<section id="contacts">
+<!-- CONTACTS SECTION -->
+<section id="contacts" aria-label="Контакты компании">
 <h2>Контакты</h2>
 <p>📍 Алматы, Молдагулова 19</p>
-<p>📞 87474549856</p>
+<p>📞 <a href="tel:+77474549856">87474549856</a></p>
 </section>
 
-<a href="https://wa.me/77474549856" class="whatsapp" target="_blank">💬</a>
-<div class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+<!-- FLOATING BUTTONS -->
+<a href="https://wa.me/77474549856" class="whatsapp" title="Написать в WhatsApp" target="_blank" rel="noopener noreferrer" aria-label="Контакт в WhatsApp">💬</a>
+<button class="top" title="Вернуться в начало" aria-label="Вернуться в начало страницы">↑</button>
 
 <script>
+// ===== SCROLL EVENTS =====
+let scrollTimeout;
 
-/* NAVBAR BLUR и появление */
-window.addEventListener("scroll",()=>{
-  document.querySelector(".navbar").classList.toggle("scrolled",window.scrollY>50);
+const scrollHandler = () => {
+  // Navbar blur effect
+  document.querySelector(".navbar").classList.toggle("scrolled", window.scrollY > 50);
 
-  document.querySelectorAll("section").forEach(sec=>{
-    if(sec.getBoundingClientRect().top < window.innerHeight-100){
+  // Fade in sections
+  document.querySelectorAll("section").forEach(sec => {
+    if(sec.getBoundingClientRect().top < window.innerHeight - 100){
       sec.classList.add("show");
     }
   });
 
-  document.querySelector(".top").style.display =
-    window.scrollY>400 ? "block":"none";
+  // Show/hide top button
+  document.querySelector(".top").style.display = window.scrollY > 400 ? "block" : "none";
+};
+
+window.addEventListener("scroll", scrollHandler, { passive: true });
+
+// ===== КНОПКА ВВЕРХ =====
+document.querySelector(".top").addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-/* Форма отправки */
-function send(){
-  let n = document.getElementById('name').value.trim();
-  let p = document.getElementById('phone').value.trim();
-  let c = document.getElementById('course').value;
-  let msgEl = document.getElementById('msgSent');
+// ===== ВАЛИДАЦИЯ ТЕЛЕФОНА =====
+const phoneRegex = /^[\d\s\-\+\(\)]{8,}$/;
 
-  if(!n || !p){
-    alert("Введите данные");
-    return;
+function validateForm(name, phone, course) {
+  const errorEl = document.getElementById('msgError');
+  
+  // Проверка заполнения всех полей
+  if (!name || !phone || !course) {
+    errorEl.textContent = "⚠️ Пожалуйста, заполните все поля";
+    errorEl.style.display = "block";
+    return false;
   }
 
-  if(p.length < 8){
-    alert("Введите корректный телефон");
-    return;
+  // Проверка длины имени
+  if (name.length < 2) {
+    errorEl.textContent = "⚠️ Имя должно содержать минимум 2 символа";
+    errorEl.style.display = "block";
+    return false;
   }
 
-  // Формируем сообщение
-  let msg = `Здравствуйте! Хочу записаться на курс "${c}"%0AИмя: ${n}%0AТелефон: ${p}`;
+  if (name.length > 50) {
+    errorEl.textContent = "⚠️ Имя не должно превышать 50 символов";
+    errorEl.style.display = "block";
+    return false;
+  }
 
-  // Открываем WhatsApp
-  window.open(`https://wa.me/77474549856?text=${encodeURIComponent(msg)}`, '_blank');
+  // Проверка формата телефона
+  if (!phoneRegex.test(phone)) {
+    errorEl.textContent = "⚠️ Введите корректный номер телефона (минимум 8 символов)";
+    errorEl.style.display = "block";
+    return false;
+  }
 
-  // Показываем сообщение на странице
-  msgEl.style.display = "block";
-
-  // Очищаем форму
-  document.getElementById('name').value = "";
-  document.getElementById('phone').value = "";
-  document.getElementById('course').selectedIndex = 0;
+  errorEl.style.display = "none";
+  return true;
 }
+
+// ===== ОТПРАВКА ФОРМЫ =====
+document.getElementById('enrollForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const nameInput = document.getElementById('name');
+  const phoneInput = document.getElementById('phone');
+  const courseInput = document.getElementById('course');
+  const msgSent = document.getElementById('msgSent');
+  const msgError = document.getElementById('msgError');
+  const button = e.target.querySelector('button');
+
+  const name = nameInput.value.trim();
+  const phone = phoneInput.value.trim();
+  const course = courseInput.value;
+
+  // Валидация
+  if (!validateForm(name, phone, course)) {
+    return;
+  }
+
+  // Формируем сообщение для WhatsApp
+  const msg = `Здравствуйте! Хочу записаться на курс "${course}"\nИмя: ${name}\nТелефон: ${phone}`;
+  const whatsappUrl = `https://wa.me/77474549856?text=${encodeURIComponent(msg)}`;
+
+  // Отключаем кнопку
+  button.disabled = true;
+  const originalText = button.textContent;
+  button.textContent = "Отправка...";
+
+  try {
+    // Открываем WhatsApp в новой вкладке
+    window.open(whatsappUrl, '_blank');
+
+    // Показываем сообщение об успехе
+    msgSent.style.display = "block";
+    msgError.style.display = "none";
+
+    // Очищаем форму
+    nameInput.value = "";
+    phoneInput.value = "";
+    courseInput.selectedIndex = 0;
+
+    // Скрываем сообщение через 3 секунды
+    setTimeout(() => {
+      msgSent.style.display = "none";
+    }, 3000);
+
+  } catch (error) {
+    console.error('Error:', error);
+    msgError.textContent = "⚠️ Произошла ошибка. Попробуйте снова.";
+    msgError.style.display = "block";
+  } finally {
+    button.disabled = false;
+    button.textContent = originalText;
+  }
+});
+
+// ===== ОЧИСТКА ОШИБОК ПРИ ВВОДЕ =====
+document.getElementById('name').addEventListener('input', () => {
+  document.getElementById('msgError').style.display = "none";
+});
+
+document.getElementById('phone').addEventListener('input', () => {
+  document.getElementById('msgError').style.display = "none";
+});
+
+document.getElementById('course').addEventListener('change', () => {
+  document.getElementById('msgError').style.display = "none";
+});
+
+// ===== KEYBOARD NAVIGATION =====
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      window.location.href = card.href;
+    }
+  });
+});
 </script>
 
 </body>
