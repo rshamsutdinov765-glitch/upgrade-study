@@ -234,6 +234,15 @@ button{
 }
 button:hover{transform:scale(1.05);}
 
+/* сообщение после отправки */
+#msgSent{
+  display:none;
+  text-align:center;
+  color:#00ff99;
+  font-weight:700;
+  margin-top:10px;
+}
+
 /* ===== КНОПКИ ===== */
 .whatsapp{
   position:fixed;
@@ -329,6 +338,7 @@ button:hover{transform:scale(1.05);}
 <option>Продлёнка</option>
 </select>
 <button onclick="send()">Получить урок</button>
+<p id="msgSent">✅ Ваша заявка отправлена! Ожидайте ответа.</p>
 </div>
 </section>
 
@@ -343,29 +353,26 @@ button:hover{transform:scale(1.05);}
 
 <script>
 
-/* NAVBAR BLUR */
+/* NAVBAR BLUR и появление */
 window.addEventListener("scroll",()=>{
-document.querySelector(".navbar")
-.classList.toggle("scrolled",window.scrollY>50);
+  document.querySelector(".navbar").classList.toggle("scrolled",window.scrollY>50);
 
-/* появление */
-document.querySelectorAll("section").forEach(sec=>{
-if(sec.getBoundingClientRect().top < window.innerHeight-100){
-sec.classList.add("show");
-}
+  document.querySelectorAll("section").forEach(sec=>{
+    if(sec.getBoundingClientRect().top < window.innerHeight-100){
+      sec.classList.add("show");
+    }
+  });
+
+  document.querySelector(".top").style.display =
+    window.scrollY>400 ? "block":"none";
 });
 
-/* кнопка вверх */
-document.querySelector(".top").style.display =
-window.scrollY>400 ? "block":"none";
-});
-
-/* форма */
+/* Форма отправки */
 function send(){
-  // Получаем элементы по ID
   let n = document.getElementById('name').value.trim();
   let p = document.getElementById('phone').value.trim();
   let c = document.getElementById('course').value;
+  let msgEl = document.getElementById('msgSent');
 
   if(!n || !p){
     alert("Введите данные");
@@ -380,8 +387,16 @@ function send(){
   // Формируем сообщение
   let msg = `Здравствуйте! Хочу записаться на курс "${c}"%0AИмя: ${n}%0AТелефон: ${p}`;
 
-  // Открываем WhatsApp с готовым сообщением
+  // Открываем WhatsApp
   window.open(`https://wa.me/77474549856?text=${encodeURIComponent(msg)}`, '_blank');
+
+  // Показываем сообщение на странице
+  msgEl.style.display = "block";
+
+  // Очищаем форму
+  document.getElementById('name').value = "";
+  document.getElementById('phone').value = "";
+  document.getElementById('course').selectedIndex = 0;
 }
 </script>
 
